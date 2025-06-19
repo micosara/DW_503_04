@@ -2,13 +2,18 @@ package com.bookmarket.main;
 
 import java.util.Scanner;
 
-import com.bookmarket.dto.Person;
+import com.bookmarket.controller.UserController;
 
 public class Welcome {
 
+	UserController ucont = new UserController();
 	
 	public static void main(String[] args) {
-		
+		Welcome w = new Welcome();
+		w.ucont.login();
+	}
+	
+	public void start() {
 
 		Scanner input = new Scanner(System.in);
 		String userName = null;

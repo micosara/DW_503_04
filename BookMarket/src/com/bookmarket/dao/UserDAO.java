@@ -13,7 +13,7 @@ public class UserDAO {
 		
 		User[] users = dataSource.getUsers();
 		for(int i=0;i<users.length;i++) {
-			if(users[i].getId().equals(id)) {
+			if(users[i]!=null && users[i].getId().equals(id)) {
 				user = users[i];
 				break;
 			}
