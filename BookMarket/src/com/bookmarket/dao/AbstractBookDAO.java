@@ -5,7 +5,7 @@ import com.bookmarket.dto.Book;
 
 public abstract class AbstractBookDAO {
 
-	private DataSource dataSource = DataSource.getInstance();
+	protected DataSource dataSource = DataSource.getInstance();
 	
 	public abstract Book[] selectBookList();
 	public abstract Book selectBookByBookId(String bookId);
