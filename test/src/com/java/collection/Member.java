@@ -1,6 +1,6 @@
 package com.java.collection;
 
-public class Member {
+public class Member implements Comparable<Member>{
 
 	private String id;
 	private String pwd;
@@ -49,6 +49,11 @@ public class Member {
 	@Override
 	public String toString() {
 		return this.id+"("+this.pwd+")";
+	}
+
+	@Override
+	public int compareTo(Member other) {
+		return this.id.compareTo(other.getId());
 	}
 	
 	
