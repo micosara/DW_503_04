@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.bookmarket.dto.Book;
 
@@ -31,9 +33,25 @@ public class JDBCTest {
 		ResultSet rs = stmt.executeQuery(sql);
 		
 		// 6. object mapping
+		List<Book> bookList = new ArrayList<Book>();
 		while(rs.next()) {
-			System.out.println(rs.getString("bookId"));
+//			System.out.println(rs.getString("bookId"));
+			Book book = new Book();
+			book.setBookID(rs.getString("bookId"));
+			book.setDescript(rs.getString("descript"));
+			book.setKind(rs.getString("kind"));
+			book.setpDate(rs.getString("pDate"));
+			book.setPrice(rs.getInt("price"));
+			book.setTitle(rs.getString("title"));
+			book.setWriter(rs.getString("writer"));
 			
+			bookList.add(book);
+			
+		}
+		
+		
+		if(bookList!=null)for(Book book : bookList) {
+			System.out.println(book);
 		}
 		
 	}
