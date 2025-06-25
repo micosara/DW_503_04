@@ -79,74 +79,8 @@ public class Welcome {
 		System.out.println("***********************************************");
 	}
 
-	public static void menuGuestInfo(String name, String mobile) {
-		System.out.println("현재 고객 정보 : ");
-		System.out.println("이름 " + name + "   연락처 " + mobile);
-	}
 
-	public static void menuCartItemList() {
-		System.out.println("2. 장바구니 상품 목록 보기 :");
-	}
-
-	public static void menuCartClear() {
-		System.out.println("3. 장바구니 비우기");
-	}
-
-	public static void menuCartAddItem(String[][] book) {
-		// System.out.println("4. 장바구니에 항목 추가하기 : ");
-
-		bookList(book);
-
-		for (int i = 0; i < NUM_BOOK; i++) {
-			for (int j = 0; j < NUM_ITEM; j++)
-				System.out.print(book[i][j] + " | ");
-			System.out.println("");
-		}
-
-		boolean quit = false;
-
-		while (!quit) {
-			System.out.print("장바구니에 추가할 도서의 ID를 입력하세요 :");
-			Scanner input = new Scanner(System.in);
-			String str = input.nextLine();
-
-			boolean flag = false;
-			int numId = -1;
-
-			for (int i = 0; i < NUM_BOOK; i++) {
-				if (str.equals(book[i][0])) {
-					numId = i;
-					flag = true;
-					break;
-				}
-			}
-			if (!flag) {
-				System.out.println("다시 입력해 주세요");
-				continue;
-			}
-			
-			System.out.println("장바구니에 추가하겠습니까? Y | N ");
-			str = input.nextLine();
-			if (str.toUpperCase().equals("Y")) {
-				System.out.println(book[numId][0] + " 도서가 장바구니에 추가되었습니다.");
-			}
-			quit = true;
-
-		}
-	}
-
-	public static void menuCartRemoveItemCount() {
-		System.out.println("5. 장바구니의 항목 수량 줄이기");
-	}
-
-	public static void menuCartRemoveItem() {
-		System.out.println("6. 장바구니의 항목 삭제하기");
-
-	}
-
-	public static void menuCartBill() {
-		System.out.println("7. 영수증 표시하기");
-	}
+	
 
 	public static void menuExit() {
 		System.out.println("프로그램을 종료합니다.");

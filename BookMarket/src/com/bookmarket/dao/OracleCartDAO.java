@@ -13,4 +13,6 @@ public interface OracleCartDAO {
 	void updateCart(Cart cart)throws SQLException;
 	void deleteCart(int cno)throws SQLException;
 	
+	int selectCartSeqNextValue()throws SQLException;
+	
 }
