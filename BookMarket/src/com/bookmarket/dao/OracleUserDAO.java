@@ -11,5 +11,5 @@ public interface OracleUserDAO {
 	User selectUserByID(String id)throws SQLException;
 	void insertUser(User user)throws SQLException;
 	void updateUser(User user)throws SQLException;
-	void delete(String id)throws SQLException;
+	void deleteUser(String id)throws SQLException;
 }

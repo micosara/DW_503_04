@@ -18,15 +18,17 @@ public class OracleBookDAOImpl implements OracleBookDAO {
 	@Override
 	public List<Book> selectBookList() throws SQLException {
 		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
 
 		try {
 			conn = dataSource.getConnection();
 			List<Book> bookList = new ArrayList<Book>();
-			
-			Statement stmt = conn.createStatement();
+
+			stmt = conn.createStatement();
 			String sql = "select * from book";
-			ResultSet rs = stmt.executeQuery(sql);
-			while(rs.next()) {
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
 				Book book = new Book();
 				book.setBookID(rs.getString("bookId"));
 				book.setDescript(rs.getString("descript"));
@@ -35,12 +37,16 @@ public class OracleBookDAOImpl implements OracleBookDAO {
 				book.setPrice(rs.getInt("price"));
 				book.setTitle(rs.getString("title"));
 				book.setWriter(rs.getString("writer"));
-				
+
 				bookList.add(book);
 			}
-			
+
 			return bookList;
 		} finally {
+			if (rs != null)
+				rs.close();
+			if (stmt != null)
+				stmt.close();
 			if (conn != null)
 				conn.close();
 		}
@@ -49,15 +55,16 @@ public class OracleBookDAOImpl implements OracleBookDAO {
 	@Override
 	public Book selectBookByID(String bookId) throws SQLException {
 		Connection conn = null;
-
+		Statement stmt = null;
+		ResultSet rs = null;
 		try {
 			conn = dataSource.getConnection();
-			Statement stmt = conn.createStatement();
-			String sql = "select * from book where bookid='"+bookId+"'";
-			ResultSet rs = stmt.executeQuery(sql);
-			
-			Book book=null;
-			if(rs.next()) {
+			stmt = conn.createStatement();
+			String sql = "select * from book where bookid='" + bookId + "'";
+			rs = stmt.executeQuery(sql);
+
+			Book book = null;
+			if (rs.next()) {
 				book = new Book();
 				book.setBookID(rs.getString("bookId"));
 				book.setDescript(rs.getString("descript"));
@@ -67,9 +74,13 @@ public class OracleBookDAOImpl implements OracleBookDAO {
 				book.setTitle(rs.getString("title"));
 				book.setWriter(rs.getString("writer"));
 			}
-			
+
 			return book;
 		} finally {
+			if (rs != null)
+				rs.close();
+			if (stmt != null)
+				stmt.close();
 			if (conn != null)
 				conn.close();
 		}
@@ -78,23 +89,24 @@ public class OracleBookDAOImpl implements OracleBookDAO {
 	@Override
 	public void insertBook(Book book) throws SQLException {
 		Connection conn = null;
-
+		PreparedStatement pstmt = null;
 		try {
 			conn = dataSource.getConnection();
-			String sql="insert into"
-					+ " book(bookId,title,price,writer,descript,kind,pDate)"
+			String sql = "insert into" + " book(bookId,title,price,writer,descript,kind,pDate)"
 					+ " values(?,?,?,?,?,?,?)";
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, book.getBookID());
 			pstmt.setString(2, book.getTitle());
-			pstmt.setInt(3,book.getPrice());
+			pstmt.setInt(3, book.getPrice());
 			pstmt.setString(4, book.getWriter());
 			pstmt.setString(5, book.getDescript());
 			pstmt.setString(6, book.getKind());
 			pstmt.setString(7, book.getpDate());
-			
+
 			pstmt.executeUpdate();
 		} finally {
+			if (pstmt != null)
+				pstmt.close();
 			if (conn != null)
 				conn.close();
 		}
@@ -103,25 +115,25 @@ public class OracleBookDAOImpl implements OracleBookDAO {
 	@Override
 	public void updateBook(Book book) throws SQLException {
 		Connection conn = null;
-
+		PreparedStatement pstmt = null;
 		try {
 			conn = dataSource.getConnection();
-			String sql = "update book"
-					+ " set"
-					+ " title=?,price=?,writer=?,descript=?,kind=?,pDate=?"
+			String sql = "update book" + " set" + " title=?,price=?,writer=?,descript=?,kind=?,pDate=?"
 					+ " where bookId=?";
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, book.getTitle());
-			pstmt.setInt(2,book.getPrice());
+			pstmt.setInt(2, book.getPrice());
 			pstmt.setString(3, book.getWriter());
 			pstmt.setString(4, book.getDescript());
 			pstmt.setString(5, book.getKind());
 			pstmt.setString(6, book.getpDate());
 			pstmt.setString(7, book.getBookID());
-			
+
 			pstmt.executeUpdate();
-			
+
 		} finally {
+			if (pstmt != null)
+				pstmt.close();
 			if (conn != null)
 				conn.close();
 		}
@@ -130,14 +142,16 @@ public class OracleBookDAOImpl implements OracleBookDAO {
 	@Override
 	public void deleteBook(String bookId) throws SQLException {
 		Connection conn = null;
-
+		Statement stmt = null;
 		try {
 			conn = dataSource.getConnection();
-			Statement stmt = conn.createStatement();
-			String sql = "delete from book where bookId='"+bookId+"'";
+			stmt = conn.createStatement();
+			String sql = "delete from book where bookId='" + bookId + "'";
 			stmt.executeUpdate(sql);
-			
+
 		} finally {
+			if (stmt != null)
+				stmt.close();
 			if (conn != null)
 				conn.close();
 		}
