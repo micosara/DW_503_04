@@ -18,6 +18,7 @@ public class OracleDataSource {
 	private String password;
 
 	private OracleDataSource() {
+		this.driverClassName = "oracle.jdbc.driver.OracleDriver";
 		this.url = "jdbc:oracle:thin:@localhost:1521:XE";
 		this.username = "dw001";
 		this.password = "dw001";

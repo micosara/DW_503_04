@@ -4,12 +4,22 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import com.bookmarket.dto.User;
+import com.bookmarket.session.ApplicationSession;
+
 public class MainView extends View {
 
 	@Override
 	public Map<String, Object> excute(Map<String, Object> params) {
 		String menu = null;
 		Scanner input = new Scanner(System.in);
+		
+		User loginUser 
+		= (User)ApplicationSession.getSession().getAttribute("loginUser");
+		
+		System.out.println(loginUser.getId()+"님 안녕하세요.");
+		System.out.println("전화번호 : "+loginUser.getPhone());
+		System.out.println("등급 : "+loginUser.getAuthority());
 		
 		
 		String greeting = "Welcome to Shopping Mall";
