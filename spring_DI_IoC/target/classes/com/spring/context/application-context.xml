@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="sum" class="com.java.operator.Summation" />
+	<bean id="minus" class="com.java.operator.Minus" />
+	<bean id="multi" class="com.java.operator.Multiplex" />
+	<bean id="div" class="com.java.operator.Divide" />
+	
+	<bean id="sum100" class="com.java.operator.Summation100" />
+	
+	<bean id="calc" class="com.java.cal.Calculator" 
+		p:sum-ref="sum"
+		p:minus-ref="minus"
+		p:multi-ref="multi"
+		p:div-ref="div"
+	/>
+	
+	
+</beans>
