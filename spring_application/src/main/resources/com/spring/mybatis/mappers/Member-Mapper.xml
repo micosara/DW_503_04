@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member-Mapper">
+
+	
+	<select id="selectMemberList" resultType="member">
+		select *
+		from member
+		order by regDate desc
+	</select>
+	
+	<select id="selectMemberByID" parameterType="str" resultType="member">
+		select *
+		from member
+		where id=#{id}
+	</select>
+	
+	<insert id="insertMember" parameterType="member">
+		insert into
+		member(id, pwd, email, phone,picture,name)
+		values(#{id}, #{pwd}, #{email}, #{phone},#{picture},#{name})
+	</insert>
+	
+	<update id="updateMember" parameterType="member">
+		update member 
+		set pwd=#{pwd},email=#{email},phone=#{phone},name=#{name},
+			picture=#{picture}
+		where id=#{id}
+	</update>
+	
+	<delete id="deleteMember" parameterType="str">
+		delete
+		from member
+		where id=#{id}
+	</delete>
+	
+	<insert id="insertAuthorities" >
+		insert into authority(user_id,authority)
+		values (#{id},#{authority})
+	</insert>
+	
+	<delete id="deleteAllAuthorityById" >
+		delete
+		from authority
+		where user_id = #{id} and authority!='ROLE_ADMIN'
+	</delete>
+	
+	<select id="selectAuthoritiesById" resultType="str">
+		select role
+		from authority_view
+		where id=#{id}
+	</select>
+</mapper>
+
+
+
+
+
