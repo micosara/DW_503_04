@@ -1,242 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-    
-<!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Starter</title>
+<%@ include file="/WEB-INF/views/module/header.jsp" %>   
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/bootstrap/plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/bootstrap/dist/css/adminlte.min.css">
-</head>
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
-
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
-    </ul>
-
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
-        </div>
-      </div>
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Starter Pages
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-
+<!-- Daterange picker -->
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/bootstrap/plugins/daterangepicker/daterangepicker.css">
+  
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -244,12 +13,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Starter Page</h1>
+            <h1 class="m-0">공지사항</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
+              <li class="breadcrumb-item">커뮤니티</li>
+              <li class="breadcrumb-item active">공지사항</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -261,63 +31,217 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div><!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-          <!-- /.col-md-6 -->
+        	<div class="col-sm-12">
+        		<div class="small-box bg-info">
+	              <div class="inner">
+	                <h3>주요 사항</h3>
+	
+	                <p>전체 공지 필수 내용</p>
+	              </div>
+	              <div class="icon">
+	                <i class="ion ion-bag"></i>
+	              </div>
+	              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+	            </div>
+        	</div>
         </div>
         <!-- /.row -->
+        
+        <div class="row">
+        	<div class="col-md-6">
+        		<div class="row">
+        			<div class="col-sm-6">
+        				<div class="card bg-gradient-success">
+			              <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
+			
+			                <h3 class="card-title">
+			                  <i class="far fa-calendar-alt"></i>
+			                  Calendar
+			                </h3>
+			                <!-- tools card -->
+			                <div class="card-tools">
+			                  <!-- button with a dropdown -->
+			                  <div class="btn-group">
+			                    <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52">
+			                      <i class="fas fa-bars"></i>
+			                    </button>
+			                    <div class="dropdown-menu" role="menu">
+			                      <a href="#" class="dropdown-item">Add new event</a>
+			                      <a href="#" class="dropdown-item">Clear events</a>
+			                      <div class="dropdown-divider"></div>
+			                      <a href="#" class="dropdown-item">View calendar</a>
+			                    </div>
+			                  </div>
+			                  <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
+			                    <i class="fas fa-minus"></i>
+			                  </button>
+			                  <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
+			                    <i class="fas fa-times"></i>
+			                  </button>
+			                </div>
+			                <!-- /. tools -->
+			              </div>
+			              <!-- /.card-header -->
+			              <div class="card-body pt-0">
+			                <!--The calendar -->
+			                <div id="calendar" style="width: 100%"><div class="bootstrap-datetimepicker-widget usetwentyfour"><ul class="list-unstyled"><li class="show"><div class="datepicker"><div class="datepicker-days" style=""><table class="table table-sm"><thead><tr><th class="prev" data-action="previous"><span class="fa fa-chevron-left" title="Previous Month"></span></th><th class="picker-switch" data-action="pickerSwitch" colspan="5" title="Select Month">July 2025</th><th class="next" data-action="next"><span class="fa fa-chevron-right" title="Next Month"></span></th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td data-action="selectDay" data-day="06/29/2025" class="day old weekend">29</td><td data-action="selectDay" data-day="06/30/2025" class="day old">30</td><td data-action="selectDay" data-day="07/01/2025" class="day">1</td><td data-action="selectDay" data-day="07/02/2025" class="day">2</td><td data-action="selectDay" data-day="07/03/2025" class="day">3</td><td data-action="selectDay" data-day="07/04/2025" class="day">4</td><td data-action="selectDay" data-day="07/05/2025" class="day weekend">5</td></tr><tr><td data-action="selectDay" data-day="07/06/2025" class="day weekend">6</td><td data-action="selectDay" data-day="07/07/2025" class="day active today">7</td><td data-action="selectDay" data-day="07/08/2025" class="day">8</td><td data-action="selectDay" data-day="07/09/2025" class="day">9</td><td data-action="selectDay" data-day="07/10/2025" class="day">10</td><td data-action="selectDay" data-day="07/11/2025" class="day">11</td><td data-action="selectDay" data-day="07/12/2025" class="day weekend">12</td></tr><tr><td data-action="selectDay" data-day="07/13/2025" class="day weekend">13</td><td data-action="selectDay" data-day="07/14/2025" class="day">14</td><td data-action="selectDay" data-day="07/15/2025" class="day">15</td><td data-action="selectDay" data-day="07/16/2025" class="day">16</td><td data-action="selectDay" data-day="07/17/2025" class="day">17</td><td data-action="selectDay" data-day="07/18/2025" class="day">18</td><td data-action="selectDay" data-day="07/19/2025" class="day weekend">19</td></tr><tr><td data-action="selectDay" data-day="07/20/2025" class="day weekend">20</td><td data-action="selectDay" data-day="07/21/2025" class="day">21</td><td data-action="selectDay" data-day="07/22/2025" class="day">22</td><td data-action="selectDay" data-day="07/23/2025" class="day">23</td><td data-action="selectDay" data-day="07/24/2025" class="day">24</td><td data-action="selectDay" data-day="07/25/2025" class="day">25</td><td data-action="selectDay" data-day="07/26/2025" class="day weekend">26</td></tr><tr><td data-action="selectDay" data-day="07/27/2025" class="day weekend">27</td><td data-action="selectDay" data-day="07/28/2025" class="day">28</td><td data-action="selectDay" data-day="07/29/2025" class="day">29</td><td data-action="selectDay" data-day="07/30/2025" class="day">30</td><td data-action="selectDay" data-day="07/31/2025" class="day">31</td><td data-action="selectDay" data-day="08/01/2025" class="day new">1</td><td data-action="selectDay" data-day="08/02/2025" class="day new weekend">2</td></tr><tr><td data-action="selectDay" data-day="08/03/2025" class="day new weekend">3</td><td data-action="selectDay" data-day="08/04/2025" class="day new">4</td><td data-action="selectDay" data-day="08/05/2025" class="day new">5</td><td data-action="selectDay" data-day="08/06/2025" class="day new">6</td><td data-action="selectDay" data-day="08/07/2025" class="day new">7</td><td data-action="selectDay" data-day="08/08/2025" class="day new">8</td><td data-action="selectDay" data-day="08/09/2025" class="day new weekend">9</td></tr></tbody></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" data-action="previous"><span class="fa fa-chevron-left" title="Previous Year"></span></th><th class="picker-switch" data-action="pickerSwitch" colspan="5" title="Select Year">2025</th><th class="next" data-action="next"><span class="fa fa-chevron-right" title="Next Year"></span></th></tr></thead><tbody><tr><td colspan="7"><span data-action="selectMonth" class="month">Jan</span><span data-action="selectMonth" class="month">Feb</span><span data-action="selectMonth" class="month">Mar</span><span data-action="selectMonth" class="month">Apr</span><span data-action="selectMonth" class="month">May</span><span data-action="selectMonth" class="month">Jun</span><span data-action="selectMonth" class="month active">Jul</span><span data-action="selectMonth" class="month">Aug</span><span data-action="selectMonth" class="month">Sep</span><span data-action="selectMonth" class="month">Oct</span><span data-action="selectMonth" class="month">Nov</span><span data-action="selectMonth" class="month">Dec</span></td></tr></tbody></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" data-action="previous"><span class="fa fa-chevron-left" title="Previous Decade"></span></th><th class="picker-switch" data-action="pickerSwitch" colspan="5" title="Select Decade">2020-2029</th><th class="next" data-action="next"><span class="fa fa-chevron-right" title="Next Decade"></span></th></tr></thead><tbody><tr><td colspan="7"><span data-action="selectYear" class="year old">2019</span><span data-action="selectYear" class="year">2020</span><span data-action="selectYear" class="year">2021</span><span data-action="selectYear" class="year">2022</span><span data-action="selectYear" class="year">2023</span><span data-action="selectYear" class="year">2024</span><span data-action="selectYear" class="year active">2025</span><span data-action="selectYear" class="year">2026</span><span data-action="selectYear" class="year">2027</span><span data-action="selectYear" class="year">2028</span><span data-action="selectYear" class="year">2029</span><span data-action="selectYear" class="year old">2030</span></td></tr></tbody></table></div><div class="datepicker-decades" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" data-action="previous"><span class="fa fa-chevron-left" title="Previous Century"></span></th><th class="picker-switch" data-action="pickerSwitch" colspan="5">2000-2090</th><th class="next" data-action="next"><span class="fa fa-chevron-right" title="Next Century"></span></th></tr></thead><tbody><tr><td colspan="7"><span data-action="selectDecade" class="decade old" data-selection="2006">1990</span><span data-action="selectDecade" class="decade" data-selection="2006">2000</span><span data-action="selectDecade" class="decade" data-selection="2016">2010</span><span data-action="selectDecade" class="decade active" data-selection="2026">2020</span><span data-action="selectDecade" class="decade" data-selection="2036">2030</span><span data-action="selectDecade" class="decade" data-selection="2046">2040</span><span data-action="selectDecade" class="decade" data-selection="2056">2050</span><span data-action="selectDecade" class="decade" data-selection="2066">2060</span><span data-action="selectDecade" class="decade" data-selection="2076">2070</span><span data-action="selectDecade" class="decade" data-selection="2086">2080</span><span data-action="selectDecade" class="decade" data-selection="2096">2090</span><span data-action="selectDecade" class="decade old" data-selection="2106">2100</span></td></tr></tbody></table></div></div></li><li class="picker-switch accordion-toggle"></li></ul></div></div>
+			              </div>
+			              <!-- /.card-body -->
+			            </div>
+        			</div>
+        			<div class="col-sm-6">
+        				<div class="col-sm-12">
+        					<div class="small-box bg-success">
+				              <div class="inner">
+				                <h3>53<sup style="font-size: 20px">%</sup></h3>
+				
+				                <p>Bounce Rate</p>
+				              </div>
+				              <div class="icon">
+				                <i class="ion ion-stats-bars"></i>
+				              </div>
+				              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+				            </div>
+        				</div>
+        				<div class="col-sm-12">
+        					<div class="small-box bg-warning">
+				              <div class="inner">
+				                <h3>44</h3>
+				
+				                <p>User Registrations</p>
+				              </div>
+				              <div class="icon">
+				                <i class="ion ion-person-add"></i>
+				              </div>
+				              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+				            </div>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        	<div class="col-md-6">
+        		<div class="row">
+        			<div class="col-sm-12">
+        				<div class="card card-primary">
+			              <div class="card-header">
+			                <h3 class="card-title">Quick Example</h3>
+			              </div>
+			              <!-- /.card-header -->
+			              <!-- form start -->
+			              <form>
+			                <div class="card-body">
+			                  <div class="form-group">
+			                    <label for="exampleInputEmail1">Email address</label>
+			                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+			                  </div>
+			                  <div class="form-group">
+			                    <label for="exampleInputPassword1">Password</label>
+			                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+			                  </div>
+			                  <div class="form-group">
+			                    <label for="exampleInputFile">File input</label>
+			                    <div class="input-group">
+			                      <div class="custom-file">
+			                        <input type="file" class="custom-file-input" id="exampleInputFile">
+			                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+			                      </div>
+			                      <div class="input-group-append">
+			                        <span class="input-group-text">Upload</span>
+			                      </div>
+			                    </div>
+			                  </div>
+			                  <div class="form-check">
+			                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+			                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+			                  </div>
+			                </div>
+			                <!-- /.card-body -->
+			
+			                <div class="card-footer">
+			                  <button type="submit" class="btn btn-primary">Submit</button>
+			                </div>
+			              </form>
+			            </div>
+        			</div>
+        		</div>
+        		<div class="row">
+        			<div class="col-sm-3">
+        				<div class="info-box bg-info">
+			              <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+			
+			              <div class="info-box-content">
+			                <span class="info-box-text">Bookmarks</span>
+			                <span class="info-box-number">41,410</span>
+			
+			                <div class="progress">
+			                  <div class="progress-bar" style="width: 70%"></div>
+			                </div>
+			                <span class="progress-description">
+			                  70% Increase in 30 Days
+			                </span>
+			              </div>
+			              <!-- /.info-box-content -->
+           				 </div>
+        			</div>
+        			<div class="col-sm-3">
+        				<div class="info-box bg-success">
+			              <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
+			
+			              <div class="info-box-content">
+			                <span class="info-box-text">Likes</span>
+			                <span class="info-box-number">41,410</span>
+			
+			                <div class="progress">
+			                  <div class="progress-bar" style="width: 70%"></div>
+			                </div>
+			                <span class="progress-description">
+			                  70% Increase in 30 Days
+			                </span>
+			              </div>
+			              <!-- /.info-box-content -->
+			            </div>
+        			</div>
+        			<div class="col-sm-3">
+        				<div class="info-box bg-warning">
+			              <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
+			
+			              <div class="info-box-content">
+			                <span class="info-box-text">Events</span>
+			                <span class="info-box-number">41,410</span>
+			
+			                <div class="progress">
+			                  <div class="progress-bar" style="width: 70%"></div>
+			                </div>
+			                <span class="progress-description">
+			                  70% Increase in 30 Days
+			                </span>
+			              </div>
+			              <!-- /.info-box-content -->
+			            </div>
+        			</div>
+        			<div class="col-sm-3">
+        				<div class="info-box bg-danger">
+			              <span class="info-box-icon"><i class="fas fa-comments"></i></span>
+			
+			              <div class="info-box-content">
+			                <span class="info-box-text">Comments</span>
+			                <span class="info-box-number">41,410</span>
+			
+			                <div class="progress">
+			                  <div class="progress-bar" style="width: 70%"></div>
+			                </div>
+			                <span class="progress-description">
+			                  70% Increase in 30 Days
+			                </span>
+			              </div>
+			              <!-- /.info-box-content -->
+			            </div>
+        			</div>
+        		</div>
+        	</div>
+		</div>
+        <!-- /.row -->
+        
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
@@ -334,26 +258,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </aside>
   <!-- /.control-sidebar -->
 
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-      Anything you want
-    </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
-</div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-<script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="<%=request.getContextPath() %>/resources/bootstrap/dist/js/adminlte.min.js"></script>
+<%@ include file="/WEB-INF/views/module/footer.jsp" %>  
+<!-- daterangepicker -->
+<script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/moment/moment.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 </body>
 </html>
-    
+  
+  
+  
+  
+  
