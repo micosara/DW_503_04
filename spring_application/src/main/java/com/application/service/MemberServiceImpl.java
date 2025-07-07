@@ -6,7 +6,10 @@ import java.util.List;
 import com.application.dao.MemberDAO;
 import com.application.dto.MemberVO;
 
+
+
 public class MemberServiceImpl implements MemberService {
+
 
 	private MemberDAO memberDAO;
 
