@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="DEBUG">
+	<Properties>
+		<Property name="logNm">log_pattern_Layout</Property>
+		<Property name="layoutPattern">[%d{ISO8601}][%5p] [%c{4}]: %m%n</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${layoutPattern}" />
+		</Console>
+		<RollingRandomAccessFile name="rolling_log"
+			fileName="./logs/file.log"
+			filePattern="./logs/pjt/pjt-%d{yyyy-MM-dd_HH}_%i.log"
+			immediateFlush="false" append="true" ignoreExceptions="false">
+			<PatternLayout pattern="${layoutPattern}" />
+			<Policies>
+				<!-- 30MB 용량이 초과시 DefaultRolloverStrategy 정책만큼 넘버링 -->
+				<SizeBasedTriggeringPolicy size="30 MB" />
+				<!-- 일별 로그 파일 생성 -->
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+			<!-- 롤링 파일 1000개 까지 생성 -->
+			<DefaultRolloverStrategy max="1000" />
+		</RollingRandomAccessFile>
+
+		<Async name="async_log" includeLocation="true">
+			<AppenderRef ref="rolling_log" />
+		</Async>
+
+
+	</Appenders>
+
+
+	<Loggers>
+		<!-- 스프링 프레임워크에서 찍는건 level을 info로 설정 -->
+		<logger name="org.springframework" level="info" additivity="false">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="async_log" />
+		</logger>
+		<!-- 
+		<Logger name="jdbc.connection" level="info" additivity="false">
+			<AppenderRef ref="async_log" />
+		</Logger>
+		<Logger name="jdbc.audit" level="error" additivity="false">
+			<AppenderRef ref="async_log" />
+		</Logger>
+		<Logger name="jdbc.resultset" level="error" additivity="false">
+			<AppenderRef ref="async_log" />
+		</Logger>
+		<Logger name="jdbc.resultsettable" level="error"
+			additivity="false">
+			<AppenderRef ref="async_log" />
+		</Logger>
+
+		<Logger name="jdbc.sqltiming" level="error" additivity="false">
+			<AppenderRef ref="async_log" />
+		</Logger>
+		<Logger name="com.ibatis" level="error" additivity="false">
+			<AppenderRef ref="async_log" />
+		</Logger>
+		<Logger name="java.sql" level="error" additivity="false">
+			<AppenderRef ref="async_log" />
+		</Logger>
+		 
+
+		<Root level="debug">
+			<AppenderRef ref="async_log" />
+			<AppenderRef ref="console" />
+		</Root>
+		-->
+	</Loggers>
+
+</Configuration>

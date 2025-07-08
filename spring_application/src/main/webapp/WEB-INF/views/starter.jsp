@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@ include file="/WEB-INF/views/module/header.jsp" %>
+
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div>
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -98,5 +100,14 @@
     </div>
   </aside>
   <!-- /.control-sidebar -->
+
+<%@ include file="/WEB-INF/views/module/footer.jsp" %>
+
+</body>
+</html>
+
+
+
+
 
   
