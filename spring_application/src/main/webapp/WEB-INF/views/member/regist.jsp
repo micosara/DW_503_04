@@ -174,7 +174,7 @@
 								<div class="col-sm-9 input-group-sm">
 									<input name="email" type="email" class="form-control"
 										id="email" placeholder="example@naver.com"
-										onblur="">
+										onblur="validation(this.name);">
 								</div>
 							</div>
 							<div class="form-group row">
@@ -335,8 +335,29 @@ function phone2(){
 function regist_go(){
 	let form = document.forms.regist;
 	for(let element of form ){
-		
+		//alert(element.name);
+		switch(element.name){
+			case "id": case "pwd": case "email": case "phone": case "name":case "picture":
+			if(!element.value){
+				alert(element.name+"은 필수입니다.");					
+				if(element.name=="picture"){
+					element.click();
+				}else{
+					element.focus();
+				}					
+				return;
+			}
+			
+			if(element.name=="id" && element.value!=checkID){
+				alert("아이디 중복확인은 필수입니다.");
+				return;
+			}
+		}
 	}
+	
+	form.action="regist";
+	form.method="post";
+	form.submit();
 }
 </script>
 </body>
