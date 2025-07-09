@@ -4,7 +4,29 @@
 	xmlns:c="http://www.springframework.org/schema/c"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
+	<!-- member.picture -->
+	<bean id="picturePath" 
+		  class="java.lang.String"
+		  c:value="${savePath.member.picture}" 		
+	/>		
+	<!-- summernote.image -->
+	<bean id="summernotePath"
+	      class="java.lang.String"
+	      c:value="${savePath.summernote.image}"
+	      />
+	<!-- pds files -->
+	<bean id="pdsSavedFilePath"
+	      class="java.lang.String"
+	      c:value="${savePath.pds.files}"
+	      />			
+	      
+	<!-- log saved path -->
+	<bean id="logSavedPath"
+	      class="java.lang.String"
+	      c:value="${savePath.log.files}"
+	      />      
+	      
+	
 	<bean id="memberDAO"
 	      class="com.application.dao.MemberDAOImpl"
 	      c:session-ref="sqlSession"

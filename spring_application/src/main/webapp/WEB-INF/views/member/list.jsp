@@ -94,7 +94,8 @@
  		   	<c:forEach var="member" items="${memberList }" >
  		   		<fmt:formatDate pattern="yyyy-MM-dd" var="regDate" 
  		   						value="${member.regDate}"/>
-	 		   	<tr>
+	 		   	<tr onclick="OpenWindow('detail?id=${member.id}','회원정보',700,800)" 
+	 		   		 style="cursor:pointer;">
 	 		   		<td></td>
 	           		<td>${member.id }</td>
 	           		<td>${member.pwd }</td>

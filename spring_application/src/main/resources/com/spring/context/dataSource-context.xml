@@ -7,10 +7,10 @@
 
 	<bean id="dataSource"
 	      class="org.apache.commons.dbcp2.BasicDataSource"
-	      p:driverClassName="oracle.jdbc.driver.OracleDriver"
-	      p:url="jdbc:oracle:thin:@localhost:1521/XE"
-	      p:username="dw002"
-	      p:password="dw002"
+	      p:driverClassName="${dataSource.driverClassName}"
+	      p:url="${dataSource.url}"
+	      p:username="${dataSource.username}"
+	      p:password="${dataSource.password}"
 	      p:maxIdle="2"
 	      p:maxTotal="4"
 	      />

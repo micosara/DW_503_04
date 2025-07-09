@@ -49,7 +49,7 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	@Override
-	public void insertAuthorities(String id, int authority) throws SQLException {
+	public void insertAuthorities(String id, String authority) throws SQLException {
 		Map<String,Object> paramMap = new HashMap<String,Object>();
 		paramMap.put("id",id);
 		paramMap.put("authority",authority);

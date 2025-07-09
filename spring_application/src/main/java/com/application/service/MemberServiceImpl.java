@@ -45,8 +45,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		if (member.getAuthorities().size() > 0) {
 			for (String authority : member.getAuthorities()) {
-				memberDAO.insertAuthorities(member.getId(),
-											Integer.parseInt(authority));
+				memberDAO.insertAuthorities(member.getId(),authority);
 			}
 		}
 
@@ -66,7 +65,7 @@ public class MemberServiceImpl implements MemberService {
 	public void modifyAuthority(String id, List<String> authorities) throws SQLException {
 		memberDAO.deleteAllAuthorityById(id);
 		if(authorities.size()>0)for(String authority:authorities) {
-			memberDAO.insertAuthorities(id, Integer.parseInt(authority));
+			memberDAO.insertAuthorities(id,authority);
 		}
 	}
 
