@@ -3,16 +3,6 @@
     
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
 
-<style>
-	div#pictureView{
-		background-image:url('getPicture?id=${member.id}');
-		background-position:center;
-		background-size:cover;
-		background-repeat:no-repeat;		
-		
-	}
-</style>
-
  <div >
       <section class="content-header">
         <div class="container-fluid">
@@ -45,7 +35,7 @@
               <div class="register-card-body" >
                   <div class="row"  style="height:200px;">
                   <div class="mailbox-attachments clearfix col-md-12" style="text-align: center;">                     
-                     <div id="pictureView" style="border: 1px solid green; height: 200px; width: 140px; margin: 0 auto;"></div>                                          
+                     <div id="pictureView" class="person-info" data-id="${member.id }" style="border: 1px solid green; height: 200px; width: 140px; margin: 0 auto;"></div>                                          
                   </div>
                </div>
                <br />
@@ -57,35 +47,35 @@
                      </div>
                    </div>                  
                    <div class="form-group row">
-                     <label for="inputPassword3" class="col-sm-3 control-label text-right">이  름</label>
+                     <label  class="col-sm-3 control-label text-right">이  름</label>
    
                      <div class="col-sm-9">
-                       <input name="pwd" type="text" class="form-control" id="inputPassword3" value="${member.name }" readonly>
+                       <input name="pwd" type="text" class="form-control"  value="${member.name }" readonly>
                      </div>
                    </div>
                     <div class="form-group row">
                      <label for="inputPassword3" class="col-sm-3 control-label text-right">이메일</label>
    
                      <div class="col-sm-9">
-                       <input name="email" type="email" class="form-control" id="inputPassword3" value="${member.email }" readonly>
+                       <input name="email" type="email" class="form-control"  value="${member.email }" readonly>
                      </div>
                    </div>
                     <div class="form-group row">
-                     <label for="inputPassword3" class="col-sm-3 control-label text-right">전화번호</label>
+                     <label class="col-sm-3 control-label text-right">전화번호</label>
                      <div class="col-sm-9">   
-                        <input name="phone" type="text" class="form-control" id="inputPassword3" value="${member.phone }" readonly>                   
+                        <input name="phone" type="text" class="form-control" value="${member.phone }" readonly>                   
                      </div>                  
                    </div>               
                  </div>  
                 <div class="card-footer" style="padding:5px 0;" >
                       <div class="row">
                          <div class="col-sm-4 text-center">                         	
-                            <button type="button" onclick="" id="modifyBtn" class="btn btn-warning ">수 정</button>
+                            <button type="button" onclick="location.href='modify?id=${member.id}';" id="modifyBtn" class="btn btn-warning ">수 정</button>
                          	
                          </div>
                       
                          <div class="col-sm-4 text-center">
-                        	 <button type="button" onclick="" id="deleteBtn" class="btn btn-danger" >삭 제</button>
+                        	 <button type="button" onclick="remove_go()" id="deleteBtn" class="btn btn-danger" >삭 제</button>
                          </div>
                          
                          <div class="col-sm-4 text-center">
@@ -108,7 +98,30 @@
   
   <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 
+<script>
+	MemberPictureBackground("<%=request.getContextPath()%>");
+</script>
 
+<script>
+function remove_go(){
+	//alert("click remove btn");
+	let answer = prompt("삭제할 회원의 아이디를 입력하세요.");
+	if(answer!='${member.id}') {
+		alert("아이디가 일치하지 않습니다.");
+		return;
+	}
+	
+	location.href="remove?id=${member.id}";
+}
+
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
   

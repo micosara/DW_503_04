@@ -12,7 +12,13 @@
 <style>
 	table th,td{
 		text-align:center;
-		padding:5px;
+		line-height:30px;
+	}
+	table td > span{
+		display:block;
+		width:30px;
+		height:30px;
+		margin:0 auto;
 	}
 </style>
 
@@ -96,7 +102,7 @@
  		   						value="${member.regDate}"/>
 	 		   	<tr onclick="OpenWindow('detail?id=${member.id}','회원정보',700,800)" 
 	 		   		 style="cursor:pointer;">
-	 		   		<td></td>
+	 		   		<td><span class="person-info" data-id="${member.id }" ></span></td>
 	           		<td>${member.id }</td>
 	           		<td>${member.pwd }</td>
 	           		<td>${member.name }</td>
@@ -120,7 +126,7 @@
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>
 
 <script>
-
+	MemberPictureBackground("<%=request.getContextPath()%>");
 
 </script>
 

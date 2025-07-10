@@ -145,7 +145,7 @@
 						<div class="card-footer">
 							<div class="row">								
 								<div class="col-sm-6">
-									<button type="button" id="registBtn" onclick="m" class="btn btn-info">수&nbsp;&nbsp;정</button>
+									<button type="button" id="registBtn" onclick="modify_go();" class="btn btn-info">수&nbsp;&nbsp;정</button>
 							 	</div>
 							 	
 							 	<div class="col-sm-6">
@@ -163,6 +163,21 @@
 </div>
 
 <%@ include file="/WEB-INF/views/module/footer.jsp" %>   
+
+<script>
+function modify_go(){
+	let isRole = $('#role1').prop("checked") 
+			    || $('#role2').prop("checked") 
+			    || $('#role3').prop("checked"); 
+	if(!isRole) {
+		alert("직책은 최소 1개 이상이어야 합니다.");
+		return;
+	}
+	
+	$('form[role="form"]').submit();
+}
+</script>
+
 
 </body>
 </html>

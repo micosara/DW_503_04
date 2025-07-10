@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,8 +24,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.application.command.MemberModifyCommand;
 import com.application.command.MemberRegistCommand;
 import com.application.dto.MemberVO;
+import com.application.exception.BadRequestPictureException;
 import com.application.service.MemberService;
 
 @Controller
@@ -73,7 +76,9 @@ public class MemberController {
 			member.setPicture(fileName);
 
 			service.regist(member);
-
+		}catch(BadRequestPictureException e) {
+			url = "/member/no_picture";
+			
 		} catch (Exception e) {
 			url = "/error/500";
 			e.printStackTrace();
@@ -85,7 +90,13 @@ public class MemberController {
 	
 	
 	public String savePicture(String oldPicture, MultipartFile multi) 
-									throws IllegalStateException, IOException {
+									throws BadRequestPictureException, 
+											IllegalStateException, IOException {
+		
+		if (multi == null || multi.isEmpty() || multi.getSize() > 1024 * 1024 * 1) {
+			throw new BadRequestPictureException();
+		}
+			
 		// 저장 파일명
 		String fileName = null;
 
@@ -102,6 +113,14 @@ public class MemberController {
 
 		// local HDD 에 저장.
 		multi.transferTo(storeFile);
+		
+		//기존 이미지 삭제
+		if (oldPicture != null && !oldPicture.isEmpty()) {
+			File oldFile = new File(uploadPath, oldPicture);
+			if (oldFile.exists()) {
+				oldFile.delete();
+			}
+		}
 		
 		return fileName;
 	}
@@ -161,6 +180,70 @@ public class MemberController {
 		MemberVO member = service.getMember(id);
 		model.addAttribute("member",member);		
 	}
+	
+	@PostMapping("/authority/modify")
+	public String modify(String id, String[] authorities)throws SQLException{
+		String url="/member/authority/success";
+		service.modifyAuthority(id, Arrays.asList(authorities));		
+		return url;
+	}
+	
+	@GetMapping("/modify")
+	public ModelAndView modifyForm(String id, ModelAndView mnv) throws Exception {
+		String url = "/member/modify";
+		
+		MemberVO member = service.getMember(id);
+		
+		mnv.addObject("member", member);
+		mnv.setViewName(url);
+		return mnv;
+	}
+	
+	@PostMapping(value = "/modify", produces = "text/plain;charset=utf-8")
+	public ModelAndView modify(MemberModifyCommand modifyCommand, ModelAndView mnv) 
+																	throws Exception {
+		String url = "/member/modify_success";
+		
+		MemberVO member = modifyCommand.toMemberVO();
+		
+		MultipartFile multi = modifyCommand.getPicture();
+		String oldPicture = service.getMember(member.getId()).getPicture();
+		try {
+			String fileName = savePicture(oldPicture, multi);
+			
+			member.setPicture(fileName);
+		}catch(BadRequestPictureException e) {
+			
+			member.setPicture(oldPicture);
+			
+		}
+		
+		// DB 수정
+		service.modify(member);
+		
+		mnv.addObject("id",member.getId());
+		mnv.setViewName(url);
+		return mnv;
+	}
+	
+	@GetMapping(value = "/remove")
+	public ModelAndView remove(String id,ModelAndView mnv) throws Exception {
+		String url = "/member/remove_success";
+
+		// 이미지 파일을 삭제
+		MemberVO member = service.getMember(id);
+		String savePath = this.picturePath;
+		File imageFile = new File(savePath, member.getPicture());
+		if (imageFile.exists()) {
+			imageFile.delete();
+		}
+		// db삭제
+		service.remove(id);
+
+		mnv.setViewName(url);
+		return mnv;
+	}
+
 }
 
 

@@ -52,3 +52,57 @@ function picture_go(){
 		 reader.readAsDataURL(file);
  	}
 } 
+
+
+//회원 정보 유효성
+var valid_data = {
+		email:{
+			pattern:/^[a-z0-9\.\-_]+@([a-z0-9\-]+\.)+[a-z]{2,6}$/g,
+			message:"이메일 형식이 아닙니다."
+		},
+		name:{
+			pattern:/^[가-힣]{2,6}$/g,
+			message:"이름은 한글 2~6글자 입니다."
+		},
+		id:{
+			pattern:/^[a-z]+[a-zA-Z0-9]{3,12}$/g,
+			message:"아이디 형식이 올바르지 않습니다."
+		},
+		pwd:{
+			pattern:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/g,
+			message:"패스워드 형식이 올바르지 않습니다.\n영문자 숫자 특수문자 조합으로 8~20글자로 하세요."
+		}
+}
+function validation(elementName){			
+	let flag = true;
+	
+	let regExp = valid_data[elementName].pattern;
+	let message =  valid_data[elementName].message;
+	
+	let input = $('input[name="'+elementName+'"]');		
+	
+	if(input.val()){ 
+		if(!input.val().match(regExp)){
+			alert(message);
+			input.val('');
+			flag=false;
+		}	
+	}else{
+		flag=false;
+	}
+	
+	return flag;
+}
+
+//회원 백그라운사진 : contextPath -> context path parameter
+function MemberPictureBackground(contextPath){
+	let elements = document.querySelectorAll('.person-info');
+	for(let element of elements){
+		let id = element.getAttribute("data-id");		
+	
+		element.style.backgroundImage ="url('"+contextPath+"/member/getPicture?id="+id+"')";
+		element.style.backgroundPosition="center";
+		element.style.backgroundRepeat="no-repeat";
+		element.style.backgroundSize="cover";
+	}
+}
