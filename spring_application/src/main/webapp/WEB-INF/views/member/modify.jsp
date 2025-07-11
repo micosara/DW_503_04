@@ -2,6 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<title>회원 수정</title>
+
+<head></head>
+
+<body>
+
+
+
 <c:if test="${empty member }">
 <script>
 	alert("존재하지 않는 회원입니다.")
@@ -10,7 +18,6 @@
 
 </c:if>
 
-<%@ include file="/WEB-INF/views/module/header.jsp" %>
 
 <!-- Content Wrapper. Contains page content -->
 <div>
@@ -103,7 +110,7 @@
 	<!-- /.content -->
 </div>
 
-<%@ include file="/WEB-INF/views/module/footer.jsp" %>
+
 
 <script>
 function modify_go(){
@@ -142,10 +149,8 @@ function modify_go(){
 <script>
 	MemberPictureBackground("<%=request.getContextPath()%>");
 </script>    
-</body>
-</html>    
-    
-    
+
+</body>    
     
     
     

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ include file="/WEB-INF/views/module/header.jsp" %>
-
+<%@ page trimDirectiveWhitespaces="true" %>
+<title>회원 상세</title>
+<body>
  <div >
       <section class="content-header">
         <div class="container-fluid">
@@ -96,7 +96,7 @@
   </div>
   <!-- /.content-wrapper -->
   
-  <%@ include file="/WEB-INF/views/module/footer.jsp" %>
+
 
 <script>
 	MemberPictureBackground("<%=request.getContextPath()%>");
@@ -115,11 +115,9 @@ function remove_go(){
 }
 
 </script>
+
+
 </body>
-</html>
-
-
-
 
 
 

@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.application.command.MemberModifyCommand;
 import com.application.command.MemberRegistCommand;
+import com.application.command.PageMaker;
 import com.application.dto.MemberVO;
 import com.application.exception.BadRequestPictureException;
 import com.application.service.MemberService;
@@ -38,11 +40,12 @@ public class MemberController {
 	private MemberService service;
 
 	@GetMapping("/list")
-	public void list(Model model) throws Exception {
-		List<MemberVO> memberList = service.list();
+	public void list(@ModelAttribute PageMaker pageMaker, Model model) throws Exception {
+		List<MemberVO> memberList = service.list(pageMaker);
 		model.addAttribute("memberList", memberList);
 	}
 
+	
 	@GetMapping("/regist")
 	public void registForm() {
 	}

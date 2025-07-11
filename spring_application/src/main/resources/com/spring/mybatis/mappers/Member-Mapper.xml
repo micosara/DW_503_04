@@ -4,11 +4,32 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Member-Mapper">
 
+	<sql id="search">
+		<if test="searchType == 'i'.toString()">
+			where id like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'n'.toString()">
+			where name like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'e'.toString()">
+			where email like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'p'.toString()">
+			where phone like '%'||#{keyword}||'%'
+		</if>
+	</sql>
 	
-	<select id="selectMemberList" resultType="member">
+	
+	<select id="selectMemberList" parameterType="pageMaker" resultType="member">
 		select *
 		from member
+		<include refid="search" />
 		order by regDate desc
+	</select>
+	<select id="selectMemberListCount" parameterType="pageMaker" resultType="int">
+		select count(*)
+		from member
+		<include refid="search" />
 	</select>
 	
 	<select id="selectMemberByID" parameterType="str" resultType="member">

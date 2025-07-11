@@ -3,6 +3,7 @@ package com.application.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.application.command.PageMaker;
 import com.application.dao.MemberDAO;
 import com.application.dto.MemberVO;
 
@@ -18,8 +19,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVO> list() throws SQLException {
-		List<MemberVO> memberList = memberDAO.selectMemberList();
+	public List<MemberVO> list(PageMaker pageMaker) throws SQLException {
+		List<MemberVO> memberList = memberDAO.selectMemberList(pageMaker);
 
 		if (memberList != null)
 			for (MemberVO member : memberList) {

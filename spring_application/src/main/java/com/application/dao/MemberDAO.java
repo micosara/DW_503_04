@@ -3,12 +3,15 @@ package com.application.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.application.command.PageMaker;
 import com.application.dto.MemberVO;
 
 public interface MemberDAO {
 
 
-	List<MemberVO> selectMemberList()throws SQLException;
+	List<MemberVO> selectMemberList(PageMaker pageMaker)throws SQLException;
+	int selectMemberListCount(PageMaker pageMaker)throws SQLException;
+	
 	MemberVO selectMemberById(String id)throws SQLException;
 	void insertMember(MemberVO member)throws SQLException;
 	void updateMember(MemberVO member)throws SQLException;

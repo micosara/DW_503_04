@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ include file="/WEB-INF/views/module/header.jsp" %>
+<title>회원 등록</title>
+
+
+<body>
 <!-- Content Wrapper. Contains page content -->
 	<div class="">
 
@@ -227,7 +230,7 @@
 	<!-- /.content-wrapper -->
 	
 
-<%@ include file="/WEB-INF/views/module/footer.jsp" %>
+
 
 <script>
 var checkID = "";
@@ -316,7 +319,6 @@ function regist_go(){
 }
 </script>
 </body>
-</html>
 
 
 

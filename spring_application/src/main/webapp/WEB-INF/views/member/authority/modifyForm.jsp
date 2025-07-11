@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
     
-<%@ include file="/WEB-INF/views/module/header.jsp" %>    
+
 <div class="">
 
   	 <section class="content-header">
@@ -162,7 +162,6 @@
 	</section>		<!-- /.content -->
 </div>
 
-<%@ include file="/WEB-INF/views/module/footer.jsp" %>   
 
 <script>
 function modify_go(){
@@ -178,9 +177,6 @@ function modify_go(){
 }
 </script>
 
-
-</body>
-</html>
 
 
 

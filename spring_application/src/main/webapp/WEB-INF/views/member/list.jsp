@@ -6,7 +6,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
-<%@ include file="/WEB-INF/views/module/header.jsp" %>
+
+<title>회원 목록</title>
+
 <head>
     
 <style>
@@ -24,6 +26,8 @@
 
 </head>    
 
+
+<body>
 <!-- Content Wrapper. Contains page content -->    
 
 <!-- Main content -->
@@ -59,15 +63,21 @@
 				 	<!-- search bar -->
 				 	<!-- sort num -->
 	  	<select class="form-control col-md-3" name="perPageNum" id="perPageNum" onchange="">					  		  		
-	  							  		
+	  			<option value="10" ${pageMaker.perPageNum eq 10 ? 'selected':'' } >정렬개수</option>
+		  		<option value="2"  ${pageMaker.perPageNum eq 2 ? 'selected':'' } >2개씩 정렬</option>
+		  		<option value="3"  ${pageMaker.perPageNum eq 3 ? 'selected':'' } >3개씩 정렬</option>			  		
 	  	</select>
 	  	
 	  	<!-- search bar -->
 	 	<select class="form-control col-md-3" name="searchType" id="searchType">
-	 							 				 									
+	 		<option value=""  >검색구분</option>
+ 			<option value="i" ${pageMaker.searchType eq 'i' ? 'selected':'' } >아이디</option>
+			<option value="n" ${pageMaker.searchType eq 'n' ? 'selected':'' }>이 름</option>
+			<option value="p" ${pageMaker.searchType eq 'p' ? 'selected':'' }>전화번호</option>
+			<option value="e" ${pageMaker.searchType eq 'e' ? 'selected':'' }>이메일</option>				 				 									
 		</select>
 		<!-- keyword -->
-				 	<input  class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요." value=""/>
+				 	<input  class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요." value="${pageMaker.keyword }"/>
 		<span class="input-group-append">
 			<button class="btn btn-primary" type="button" onclick="search_list(1);" id="searchBtn" data-card-widget="search" >
 				<i class="fa fa-fw fa-search"></i>
@@ -123,7 +133,33 @@
 </section>
 
 
-<%@ include file="/WEB-INF/views/module/footer.jsp" %>
+
+
+<form id="jobForm" style="display:none;">	
+	<input type='text' name="page" value="1" />
+	<input type='text' name="perPageNum" value=""/>
+	<input type='text' name="searchType" value="" />
+	<input type='text' name="keyword" value="" />
+</form>
+<script>
+function search_list(page){
+	let perPageNum = document.querySelector('select[name="perPageNum"]').value;
+	let searchType = document.querySelector('select[name="searchType"]').value;
+	let keyword = document.querySelector('input[name="keyword"]').value;
+	
+	//alert(perPageNum+":"+searchType+":"+keyword);
+	
+	let form = document.querySelector("#jobForm");
+	form.perPageNum.value=perPageNum;
+	form.searchType.value = searchType;
+	form.keyword.value = keyword;
+	
+	//console.log($(form).serialize());
+	form.submit();
+	
+}
+
+</script>
 
 <script>
 	MemberPictureBackground("<%=request.getContextPath()%>");
@@ -131,5 +167,3 @@
 </script>
 
 </body>
-</html>
-

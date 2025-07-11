@@ -3,12 +3,13 @@ package com.application.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.application.command.PageMaker;
 import com.application.dto.MemberVO;
 
 public interface MemberService {
 
 	// 회원목록
-	List<MemberVO> list() throws SQLException;
+	List<MemberVO> list(PageMaker pageMaker) throws SQLException;
 
 	// 회원조회
 	MemberVO getMember(String id) throws SQLException;
