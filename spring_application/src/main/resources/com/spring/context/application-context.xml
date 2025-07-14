@@ -26,10 +26,20 @@
 	      c:value="${savePath.log.files}"
 	      />      
 	      
-	
+	<!-- Repository  -->
 	<bean id="memberDAO"
 	      class="com.application.dao.MemberDAOImpl"
 	      c:session-ref="sqlSession"
+	      />
+	<bean id="menuDAO"
+	      class="com.application.dao.MenuDAOImpl"
+	      c:session-ref="sqlSession"
+	      />
+	      
+	<!-- Service -->
+	<bean id="menuService"
+	      class="com.application.service.MenuServiceImpl"
+	      c:menuDAO-ref="menuDAO"
 	      />
 	<bean id="memberService"
 	      class="com.application.service.MemberServiceImpl"

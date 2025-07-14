@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 
+
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,6 +40,9 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 
+	@GetMapping("/main")
+	public void main() {}
+	
 	@GetMapping("/list")
 	public void list(@ModelAttribute PageMaker pageMaker, Model model) throws Exception {
 		List<MemberVO> memberList = service.list(pageMaker);

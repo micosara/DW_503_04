@@ -9,6 +9,7 @@
 		<typeAlias type="java.lang.Integer" alias="int"/>
 		
 		<typeAlias type="com.application.dto.MemberVO" alias="member"/>
+		<typeAlias type="com.application.dto.MenuVO" alias="menu"/>
 		
 		<typeAlias type="com.application.command.PageMaker" alias="pageMaker"/>
 	</typeAliases>

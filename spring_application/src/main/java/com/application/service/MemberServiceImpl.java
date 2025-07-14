@@ -27,7 +27,8 @@ public class MemberServiceImpl implements MemberService {
 				List<String> authorities = memberDAO.selectAuthoritiesById(member.getId());
 				member.setAuthorities(authorities);
 			}
-
+		pageMaker.setTotalCount(memberDAO.selectMemberListCount(pageMaker));
+		
 		return memberList;
 	}
 

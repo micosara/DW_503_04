@@ -127,39 +127,11 @@
 		    
 		</div> <!-- card-body -->
 		<div class="card-footer">
-			
+			<%@ include file="/WEB-INF/views/module/pagination.jsp" %>
 		</div>
   </div>
 </section>
 
-
-
-
-<form id="jobForm" style="display:none;">	
-	<input type='text' name="page" value="1" />
-	<input type='text' name="perPageNum" value=""/>
-	<input type='text' name="searchType" value="" />
-	<input type='text' name="keyword" value="" />
-</form>
-<script>
-function search_list(page){
-	let perPageNum = document.querySelector('select[name="perPageNum"]').value;
-	let searchType = document.querySelector('select[name="searchType"]').value;
-	let keyword = document.querySelector('input[name="keyword"]').value;
-	
-	//alert(perPageNum+":"+searchType+":"+keyword);
-	
-	let form = document.querySelector("#jobForm");
-	form.perPageNum.value=perPageNum;
-	form.searchType.value = searchType;
-	form.keyword.value = keyword;
-	
-	//console.log($(form).serialize());
-	form.submit();
-	
-}
-
-</script>
 
 <script>
 	MemberPictureBackground("<%=request.getContextPath()%>");
