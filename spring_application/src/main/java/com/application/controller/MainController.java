@@ -24,11 +24,13 @@ public class MainController {
 		
 		model.addAttribute("menuList",menuList);
 		
-		
+		MenuVO menu = null;
 		if (mcode != null) {
-			MenuVO menu = menuService.getMenuByMcode(mcode);
-			model.addAttribute("menu", menu);
+			menu = menuService.getMenuByMcode(mcode);
+		}else {
+			menu = menuService.getMenuByMcode("M000000");
 		}
+		model.addAttribute("menu", menu);
 		
 		return url;
 	}

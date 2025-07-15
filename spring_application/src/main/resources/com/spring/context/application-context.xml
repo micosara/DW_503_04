@@ -35,8 +35,16 @@
 	      class="com.application.dao.MenuDAOImpl"
 	      c:session-ref="sqlSession"
 	      />
-	      
+	<bean id="noticeDAO"
+	      class="com.application.dao.NoticeDAOImpl"
+	      c:session-ref="sqlSession"
+	      />
+	            
 	<!-- Service -->
+	<bean id="noticeService"
+	      class="com.application.service.NoticeServiceImpl"
+	      c:noticeDAO-ref="noticeDAO"
+	      />
 	<bean id="menuService"
 	      class="com.application.service.MenuServiceImpl"
 	      c:menuDAO-ref="menuDAO"

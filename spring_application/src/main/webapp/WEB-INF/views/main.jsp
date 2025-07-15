@@ -33,7 +33,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
       <c:forEach items="${menuList }" var="menu">
 	      <li class="nav-item d-none d-sm-inline-block">
-	        <a href="javascript:go_page('<%=request.getContextPath() %>${menu.murl }','${menu.mcode }');" class="nav-link">${menu.mname }</a>
+	        <a href="javascript:subMenu_go('${menu.mcode }');go_page('<%=request.getContextPath() %>${menu.murl }','${menu.mcode }');" class="nav-link">${menu.mname }</a>
 	      </li>
       </c:forEach>
     </ul>
@@ -195,41 +195,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Starter Pages
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
+        <ul class="nav nav-pills nav-sidebar flex-column subMenuList" data-widget="treeview" role="menu" data-accordion="false">
+         
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -272,6 +239,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<%=request.getContextPath() %>/resources/bootstrap/dist/js/adminlte.min.js"></script>
+<!-- handlebars -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js" ></script>
+<script type="text/x-handlebars-template"  id="subMenu-list-template" >
+{{#each .}}	
+<li class="nav-item subMenu" >
+	<a href="javascript:go_page('<%=request.getContextPath() %>{{murl}}','{{mcode }}');"	class="nav-link">
+		<i class="{{micon}}"></i>
+		<p>{{mname}}</p>
+	</a>
+</li>
+{{/each}}
+</script>
+<script>
+var sub_func= Handlebars.compile($("#subMenu-list-template").html());
+function subMenu_go(mcode){
+	//alert("subMenu : "+mcode);
+	
+	if(mcode=="M000000") {
+		$('.subMenuList').html("");
+		return;
+	}
+	
+	$.ajax({
+		url:"menu/subMenu?mcode="+mcode,
+		method:"get",
+		success:function(data){
+			$('.subMenuList').html(sub_func(data));
+		},
+		error:function(error){
+			alert("서버장애가 발생했습니다.");
+		}
+	});
+	
+}
+</script>
 
 <script>
 function go_page(url,mcode){
@@ -280,6 +282,7 @@ function go_page(url,mcode){
 	
 	//현재 주소 중 .do 뒤 부분이 있다면 날려버린다.
 	renewURL = renewURL.substring(0, renewURL.indexOf("index")+5);
+	
 	
 	if (mcode != 'M000000') {
 	    renewURL += "?mcode="+mcode;
@@ -295,6 +298,7 @@ function go_page(url,mcode){
 <c:if test="${not empty menu }">
 	<script>
 		go_page('<%=request.getContextPath()%>${menu.murl}','${menu.mcode}');
+		subMenu_go('${menu.mcode}'.substring(0,3)+"0000");
 	</script>
 </c:if>
 
