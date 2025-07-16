@@ -115,58 +115,7 @@ $(".person-info").css({
 	"border-radius":"10px"
 });
 
-$("textarea#content").summernote({
-	   placeholder:'여기에 내용을 적으세요.',
-       lang:'ko-KR',
-       height:350,
-       disableResizeEditor: "false",
-       callbacks:{
-    	   onImageUpload : function(files, editor, welEditable) {
-    		  // alert("images click");
-    		  for(file of files){
-    			  if(file.name.substring(file.name.lastIndexOf(".")+1).toUpperCase() != "JPG"){
-                      alert("JPG 이미지형식만 가능합니다.");
-                      return;
-                   }
-                   if(file.size > 1024*1024*1){
-                      alert("이미지는 1MB 미만입니다.");
-                      return;
-                   }         
-    		  }
-    		  
-   		  	 for (var file of files) {
-                  sendFile(file,this,'<%=request.getContextPath()%>');
-             }
-    		  
-    	   },
-    	   onMediaDelete : function(target) {}
-       }
-       
-});
-</script>
-
-<script>
-function sendFile(file,el,context){
-	var form_data = new FormData();
-	form_data.append("file", file);
-	
-	$.ajax({
-		url:context+'/summernote/uploadImg',
-		method:"POST",
-		data: form_data,
-		contentType:false,
-		processData:false,
-		success:function(img_url){
-			//alert(img_url);
-			$(el).summernote('editor.insertImage', img_url);
-		},
-		error:function(error){
-			alert("이미지 등록이 불가합니다.");
-	    }
-	});
-	
-	
-}
+Summernote_go($("textarea#content"),'<%=request.getContextPath()%>');
 </script>
 </body>
 
