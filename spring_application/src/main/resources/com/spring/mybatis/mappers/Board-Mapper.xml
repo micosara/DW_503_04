@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Board-Mapper">
+	<sql id="search">
+		<if test="searchType == 't'.toString()">
+			and title like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'w'.toString()">
+			and writer like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'c'.toString()">
+			and content like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'tc'.toString()">
+			and (
+			title like '%'||#{keyword}||'%'
+			or
+			content like '%'||#{keyword}||'%'						
+			)			
+		</if>
+		<if test="searchType == 'cw'.toString()">
+			and (
+			writer like '%'||#{keyword}||'%'
+			or
+			content like '%'||#{keyword}||'%'						
+			)			
+		</if>
+		<if test="searchType == 'tcw'.toString()">
+			and (
+			title like '%'||#{keyword}||'%'
+			or
+			writer like '%'||#{keyword}||'%'
+			or
+			content like '%'||#{keyword}||'%'						
+			)			
+		</if>
+	</sql>
+	<select id="selectSearchBoardList" parameterType="pageMaker" resultType="board">
+		select
+		*
+		from
+		board
+		where bno is not null  			  	
+		<include refid="search" />
+		order by regDate desc
+	</select>
+	
+	<select id="selectSearchBoardListCount" parameterType="pageMaker" resultType="int">
+		select
+		count(*)
+		from
+		board
+		where bno is not null  			  	
+		<include refid="search" />		
+	</select>
+		
+	<select id="selectBoardByBno" parameterType="int"  resultType="board">
+		select * 
+		from board 
+		where bno=#{bno}
+	</select>
+	
+	<select id="selectCountUsedByImage" resultType="int">
+		select count(*)
+		from board
+		where content like '%'||#{imageFile}||'%'
+	</select>
+	
+	<insert id="insertBoard" parameterType="board">
+		insert 
+		into 
+		board(bno,title,writer,content)
+		values
+		(#{bno},#{title},#{writer},#{content})
+	</insert>
+	
+	<update id="updateBoard" parameterType="board">
+		update 
+		board 
+		set 
+		title=#{title}, content=#{content}, updatedate=sysdate 
+		where bno=#{bno}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete 
+		from board 
+		where bno=#{bno}
+	</delete>
+	
+	<update id="increaseViewCnt" parameterType="int">
+		update 
+		board 
+		set 
+		viewcnt=viewcnt+1 
+		where bno=#{bno}
+	</update>
+	
+	<select id="selectBoardSeqNext" resultType="int">
+		select board_seq.nextval as bno from dual
+	</select>
+</mapper>
+
+
+
+
+

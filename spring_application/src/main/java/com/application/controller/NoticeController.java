@@ -1,6 +1,11 @@
 package com.application.controller;
 
+import java.io.File;
 import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +20,7 @@ import com.application.command.NoticeRegistCommand;
 import com.application.command.PageMaker;
 import com.application.dto.NoticeVO;
 import com.application.service.NoticeService;
+import com.josephoconnell.html.HTMLInputFilter;
 
 @Controller
 @RequestMapping("/notice")
@@ -22,6 +28,9 @@ public class NoticeController {
 
 	@Autowired
 	private NoticeService noticeService;
+	
+	@Resource(name="summernotePath")
+	private String summernotePath;
 	
 	@GetMapping("/main")
 	public void main() {}
@@ -40,6 +49,7 @@ public class NoticeController {
 		String url = "/notice/regist_success";
 	
 		NoticeVO notice = regCommand.toNoticeVO();
+		notice.setTitle(HTMLInputFilter.htmlSpecialChars(notice.getTitle()));
 		
 		noticeService.regist(notice);
 		
@@ -47,9 +57,20 @@ public class NoticeController {
 	}
 	
 	@GetMapping("/detail")
-	public void detail(int nno, Model model)throws Exception{
+	public void detail(int nno, HttpServletRequest request,Model model)throws Exception{
 		
-		NoticeVO notice = noticeService.detail(nno);
+		ServletContext ctx = request.getServletContext();
+		
+		String key = "notice:"+nno;
+		
+		NoticeVO notice = null;
+		
+		if(ctx.getAttribute(key)!=null) {
+			notice = noticeService.getNotice(nno);
+		}else {
+			ctx.setAttribute(key, key);
+			notice = noticeService.detail(nno);
+		}	
 
 		model.addAttribute("notice",notice);
 	}
@@ -75,6 +96,14 @@ public class NoticeController {
 	public String remove(int nno)throws Exception{
 		String url="/notice/remove_success";
 		
+		NoticeVO notice = noticeService.getNotice(nno);
+		File dir = new File(summernotePath);
+		File[] files = dir.listFiles();
+		if(files!=null) for(File file : files) {
+			if(notice.getContent().contains(file.getName())) {
+				file.delete();
+			}
+		}
 		noticeService.remove(nno);
 		
 		return url;

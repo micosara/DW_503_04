@@ -39,8 +39,18 @@
 	      class="com.application.dao.NoticeDAOImpl"
 	      c:session-ref="sqlSession"
 	      />
-	            
+	<bean id="boardDAO"
+	      class="com.application.dao.BoardDAOImpl"
+	      c:session-ref="sqlSession"
+	      />        
+	      
+	          
 	<!-- Service -->
+	<bean id="boardService"
+	      class="com.application.service.BoardServiceImpl"
+	      c:boardDAO-ref="boardDAO"
+	      c:summernotePath-ref="summernotePath"
+	      />
 	<bean id="noticeService"
 	      class="com.application.service.NoticeServiceImpl"
 	      c:noticeDAO-ref="noticeDAO"
