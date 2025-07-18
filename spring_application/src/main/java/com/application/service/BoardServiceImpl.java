@@ -6,17 +6,19 @@ import java.util.List;
 
 import com.application.command.PageMaker;
 import com.application.dao.BoardDAO;
+import com.application.dao.ReplyDAO;
 import com.application.dto.BoardVO;
 
 public class BoardServiceImpl implements BoardService{
 
 	private BoardDAO boardDAO;
 	private String summernotePath;
+	private ReplyDAO replyDAO;
 	
-	
-	public BoardServiceImpl(BoardDAO boardDAO,String summernotePath) {
+	public BoardServiceImpl(BoardDAO boardDAO,String summernotePath,ReplyDAO replyDAO) {
 		this.summernotePath = summernotePath;
 		this.boardDAO = boardDAO;
+		this.replyDAO = replyDAO;
 	}
 
 	@Override
@@ -25,6 +27,12 @@ public class BoardServiceImpl implements BoardService{
 		
 		int totalCount = boardDAO.selectSearchBoardListCount(pageMaker);
 		pageMaker.setTotalCount(totalCount);
+		
+		// reply count 입력
+		for (BoardVO board : boardList) {
+			int replycnt = replyDAO.countReply(board.getBno());
+			board.setReplycnt(replycnt);
+		}
 		
 		return boardList;
 	}

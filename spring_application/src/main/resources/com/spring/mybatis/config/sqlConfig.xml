@@ -13,6 +13,8 @@
 		<typeAlias type="com.application.dto.NoticeVO" alias="notice"/>
 		<typeAlias type="com.application.dto.BoardVO" alias="board"/>
 		<typeAlias type="com.application.dto.ReplyVO" alias="reply"  />
+		<typeAlias type="com.application.dto.AttachVO" alias="attach"/>
+		<typeAlias type="com.application.dto.PdsVO" alias="pds"/>
 		
 		<typeAlias type="com.application.command.PageMaker" alias="pageMaker"/>
 	</typeAliases>
