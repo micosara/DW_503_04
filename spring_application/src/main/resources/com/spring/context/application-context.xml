@@ -43,14 +43,19 @@
 	      class="com.application.dao.BoardDAOImpl"
 	      c:session-ref="sqlSession"
 	      />        
-	      
+	<bean id="replyDAO"
+	      class="com.application.dao.ReplyDAOImpl"
+	      c:session-ref="sqlSession"
+	      />      
 	          
 	<!-- Service -->
+	<bean id="replyService" 
+		  class="com.application.service.ReplyServiceImpl"
+		  c:replyDAO-ref="replyDAO"
+		  />
 	<bean id="boardService"
-	      class="com.application.service.BoardServiceImpl"
-	      c:boardDAO-ref="boardDAO"
-	      c:summernotePath-ref="summernotePath"
-	      />
+		class="com.application.service.BoardServiceImpl"
+		c:boardDAO-ref="boardDAO" c:summernotePath-ref="summernotePath" />
 	<bean id="noticeService"
 	      class="com.application.service.NoticeServiceImpl"
 	      c:noticeDAO-ref="noticeDAO"

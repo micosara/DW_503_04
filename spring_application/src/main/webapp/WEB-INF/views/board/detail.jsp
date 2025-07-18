@@ -112,6 +112,9 @@
   
   <!-- /.content -->
 
+<%@ include file="./reply_js.jsp" %>
+
+
 
 <script>
 function modify(){
