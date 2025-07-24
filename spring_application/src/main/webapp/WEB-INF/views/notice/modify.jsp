@@ -3,6 +3,14 @@
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<head>
+	<!-- summernote -->
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/bootstrap/plugins/summernote/summernote-bs4.min.css">
+
+	<!-- Summernote -->
+	<script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/summernote/summernote-bs4.min.js"></script>
+</head>
+
 <body>
 <section class="content-header">
 	  	<div class="container-fluid">
@@ -63,6 +71,10 @@
 			</div><!-- end col-md-12 -->
 		</div><!-- end row -->
     </section>
+
+<script>
+	Summernote_go($("textarea#content"),"<%=request.getContextPath() %>") ;
+</script>
 
 <script>
 function modify_go(){
