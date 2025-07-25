@@ -9,6 +9,7 @@
 	
 	<excludes>
 		<pattern>/resources/**</pattern>
+		<pattern>/commons/login**</pattern>
 	</excludes>
 	
 </decorators>
