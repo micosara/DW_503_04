@@ -63,6 +63,10 @@ public class PdsServiceImpl implements PdsService{
 	@Override
 	public PdsVO getPds(int pno) throws SQLException {
 		PdsVO pds = pdsDAO.selectPdsByPno(pno);
+		
+		List<AttachVO> attachList = attachDAO.selectAttachByPno(pno);
+		pds.setAttachList(attachList);
+		
 		return pds;
 	}
 	
