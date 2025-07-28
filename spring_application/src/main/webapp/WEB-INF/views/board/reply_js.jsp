@@ -33,7 +33,7 @@
         <span class="time">
           <i class="fa fa-clock"></i>{{prettifyDate regdate}}
           <a class="btn btn-primary btn-xs {{rno}}-a" id="modifyReplyBtn" data-rno={{rno}} onclick="replyModifyModal_go('{{rno}}');"            
-            
+             style="display:{{VisibleByLoginCheck replyer}};"
              data-replyer={{replyer}} data-toggle="modal" data-target="#modifyModal">Modify</a>
         </span>
    
@@ -82,6 +82,12 @@ Handlebars.registerHelper({
          var date=dateObj.getDate();
          return year+"/"+month+"/"+date;
 	 },
+	 "VisibleByLoginCheck":function(replyer){
+         var result="none";      
+         if(replyer == "${loginUser.id}") result="visible";      
+         return result;                    
+      },
+	  
      "goPage":function(pageNum){
           return 'javascript:getPage('+pageNum+');';
       },
@@ -138,7 +144,7 @@ function replyRegist_go(){
 	
 	 var data={
          "bno":"${board.bno}",
-         "replyer":"mama", // "${loginUser.id}"
+         "replyer":"${loginUser.id}"
          "replytext":replytext         
    		 }
 	 

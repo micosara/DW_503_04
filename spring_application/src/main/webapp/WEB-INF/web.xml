@@ -49,6 +49,20 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	 <filter>
+		<filter-name>loginCheckFilter</filter-name>
+		<filter-class>com.application.filter.LoginCheckFilter</filter-class>
+		<init-param>
+			<param-name>excludeUrl</param-name>
+			<param-value>/commons/login,/resources</param-value>
+		</init-param>		
+	</filter> 
+	<filter-mapping>
+		<filter-name>loginCheckFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
 	
 	<!-- Processes application requests -->
 	<servlet>

@@ -57,13 +57,13 @@
 								<label for="writer">작성자</label>
 								<div class="col-sm-6 row">									
 									<div class="col-sm-2" >
-										<span class="person-info" data-id="mimi" ></span>
+										<span class="person-info" data-id="${loginUser.id }" ></span>
 									</div>
-									<div class="col-sm-10" >mimi</div>									
+									<div class="col-sm-10" >${loginUser.name }</div>									
 								</div> 
 								
 								<input type="hidden" id="writer" title="작성자" readonly
-									name="writer" class="form-control notNull" value="mimi" >
+									name="writer" class="form-control notNull" value="${loginUser.id }" >
 							</div>
 							<div class="form-group">
 								<label for="content">내 용</label>

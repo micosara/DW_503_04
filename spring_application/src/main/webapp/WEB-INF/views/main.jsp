@@ -1,3 +1,4 @@
+<%@page import="com.application.dto.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -174,10 +175,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<%=request.getContextPath() %>/resources/bootstrap/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="<%=request.getContextPath() %>/member/getPicture?id=${loginUser.id}" class="img-circle elevation-2" alt="User Image">
         </div>
-        <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+        <div style="margin-left:20px;">
+        	<div class="row">
+        	  &nbsp;&nbsp;
+	          <a href="javascript:OpenWindow('member/detail?id=${loginUser.id}','회원정보',700,800);" title="내정보 보기" class="d-block">${loginUser.name }</a>
+              &nbsp;&nbsp;&nbsp;&nbsp;	       	 
+	       	  <button class="btn btn-xs btn-primary col-xs-4" type="button" 
+	       	  onclick="location.href='<%=request.getContextPath()%>/commons/logout';">LOGOUT</button>
+        	</div>
+        	<a href="tel:${loginUser.phone }">tel : ${loginUser.phone } </a><br/>
+         	<a href="mailto:${loginUser.email }">email : ${loginUser.email }</a>
         </div>
       </div>
 
@@ -239,6 +248,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<%=request.getContextPath() %>/resources/bootstrap/dist/js/adminlte.min.js"></script>
+<!-- commons.js -->
+<script src="<%=request.getContextPath() %>/resources/js/common.js"></script>
+
 <!-- handlebars -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js" ></script>
 <script type="text/x-handlebars-template"  id="subMenu-list-template" >

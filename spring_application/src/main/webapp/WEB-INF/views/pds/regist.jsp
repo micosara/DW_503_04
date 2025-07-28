@@ -46,8 +46,9 @@
 						<form enctype="multipart/form-data" role="form" method="post" action="regist.do" name="registForm">
 							<div class="form-group">
 								<label for="writer">작성자</label> 
-								<input type="text" id="writer" readonly
-									name="writer" class="form-control" value="mimi">
+								<input type="hidden" id="writer" name="writer" class="form-control" value="${loginUser.id }">
+									<input type="text" id="writer" disabled
+									name="" class="form-control" value="${loginUser.name }">
 							</div>
 							<div class="form-group">
 								<label for="title">제 목</label> 
