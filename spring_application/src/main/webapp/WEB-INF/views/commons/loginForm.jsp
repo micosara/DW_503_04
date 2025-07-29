@@ -30,7 +30,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		 <div class="card-body login-card-body">
 			<p class="login-box-msg">Sign in to start your session</p>
 
-			<form action="login" method="post">
+			<form action="login/post" method="post">
 				<input name="retUrl" value="${retUrl }" type="hidden" />
 				<div class="form-group has-feedback">
 					<input type="text" class="form-control" name="id" placeholder="아이디를 입력하세요." value="">
