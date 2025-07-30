@@ -5,6 +5,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
     
 
 <title>회원 목록</title>
@@ -57,32 +58,34 @@
   	<section class="content">
   		<div class="card">
   			<div class="card-header with-border">
+  			   <sec:authorize access="hasAnyRole('ROLE_ADMIN,MEMBER_CREATE')">
   				<button type="button" class="btn btn-primary" onclick="OpenWindow('regist','회원등록',700,900);" >회원등록</button>   				
-			<div id="keyword" class="card-tools" style="width:550px;">
-				 <div class="input-group row">
-				 	<!-- search bar -->
-				 	<!-- sort num -->
-	  	<select class="form-control col-md-3" name="perPageNum" id="perPageNum" onchange="">					  		  		
-	  			<option value="10" ${pageMaker.perPageNum eq 10 ? 'selected':'' } >정렬개수</option>
-		  		<option value="2"  ${pageMaker.perPageNum eq 2 ? 'selected':'' } >2개씩 정렬</option>
-		  		<option value="3"  ${pageMaker.perPageNum eq 3 ? 'selected':'' } >3개씩 정렬</option>			  		
-	  	</select>
-	  	
-	  	<!-- search bar -->
-	 	<select class="form-control col-md-3" name="searchType" id="searchType">
-	 		<option value=""  >검색구분</option>
- 			<option value="i" ${pageMaker.searchType eq 'i' ? 'selected':'' } >아이디</option>
-			<option value="n" ${pageMaker.searchType eq 'n' ? 'selected':'' }>이 름</option>
-			<option value="p" ${pageMaker.searchType eq 'p' ? 'selected':'' }>전화번호</option>
-			<option value="e" ${pageMaker.searchType eq 'e' ? 'selected':'' }>이메일</option>				 				 									
-		</select>
-		<!-- keyword -->
-				 	<input  class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요." value="${pageMaker.keyword }"/>
-		<span class="input-group-append">
-			<button class="btn btn-primary" type="button" onclick="search_list(1);" id="searchBtn" data-card-widget="search" >
-				<i class="fa fa-fw fa-search"></i>
-			</button>
-		</span>
+			   </sec:authorize>
+			 	<div id="keyword" class="card-tools" style="width:550px;">
+					<div class="input-group row">
+					 	<!-- search bar -->
+					 	<!-- sort num -->
+					  	<select class="form-control col-md-3" name="perPageNum" id="perPageNum" onchange="">					  		  		
+					  			<option value="10" ${pageMaker.perPageNum eq 10 ? 'selected':'' } >정렬개수</option>
+						  		<option value="2"  ${pageMaker.perPageNum eq 2 ? 'selected':'' } >2개씩 정렬</option>
+						  		<option value="3"  ${pageMaker.perPageNum eq 3 ? 'selected':'' } >3개씩 정렬</option>			  		
+					  	</select>
+		  	
+					  	<!-- search bar -->
+					 	<select class="form-control col-md-3" name="searchType" id="searchType">
+					 		<option value=""  >검색구분</option>
+				 			<option value="i" ${pageMaker.searchType eq 'i' ? 'selected':'' } >아이디</option>
+							<option value="n" ${pageMaker.searchType eq 'n' ? 'selected':'' }>이 름</option>
+							<option value="p" ${pageMaker.searchType eq 'p' ? 'selected':'' }>전화번호</option>
+							<option value="e" ${pageMaker.searchType eq 'e' ? 'selected':'' }>이메일</option>				 				 									
+						</select>
+						<!-- keyword -->
+								 	<input  class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요." value="${pageMaker.keyword }"/>
+						<span class="input-group-append">
+							<button class="btn btn-primary" type="button" onclick="search_list(1);" id="searchBtn" data-card-widget="search" >
+								<i class="fa fa-fw fa-search"></i>
+							</button>
+						</span>
 	<!-- end : search bar -->		 
 				 </div>
 			</div>   			
