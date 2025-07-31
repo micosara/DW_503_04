@@ -30,6 +30,7 @@ import com.application.command.PdsModifyCommand;
 import com.application.command.PdsRegistCommand;
 import com.application.dao.AttachDAO;
 import com.application.dto.AttachVO;
+import com.application.dto.MemberVO;
 import com.application.dto.PdsVO;
 import com.application.service.PdsService;
 import com.josephoconnell.html.HTMLInputFilter;
@@ -102,7 +103,8 @@ public class PdsController {
 		
 		ServletContext ctx = session.getServletContext();
 		
-		String key = "pds:"+pno;
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+		String key = "pds:"+member.getId()+pno;
 		
 		PdsVO pds = null;
 		if(ctx.getAttribute(key)!=null) {

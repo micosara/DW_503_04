@@ -14,9 +14,21 @@
 	      p:maxIdle="2"
 	      p:maxTotal="4"
 	      />
+	      
+	<bean id="dataSourceSpied"
+		class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSource" />
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE" />
+				<property name="sqlPrefix" value="SQL:::" />
+			</bean>
+		</property>
+	</bean>	
+	
 	<bean id="sqlSessionFactory" 
 	      class="org.mybatis.spring.SqlSessionFactoryBean"	
-	      p:dataSource-ref="dataSource"
+	      p:dataSource-ref="dataSourceSpied"
 	      p:configLocation="classpath:com/spring/mybatis/config/sqlConfig.xml"
 	      p:mapperLocations="classpath:com/spring/mybatis/mappers/*-Mapper.xml"
 	      />
@@ -26,6 +38,6 @@
 		  />
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
-		p:dataSource-ref="dataSource"
+		p:dataSource-ref="dataSourceSpied"
 		/>
 </beans>

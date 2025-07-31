@@ -47,7 +47,8 @@ public class BoardController {
 		
 		ServletContext ctx = session.getServletContext();
 		
-		String key = "board:"+bno;
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+		String key = "board:"+member.getId()+bno;
 		
 		if(ctx.getAttribute(key)!=null) {
 			model.addAttribute("board",boardService.getBoard(bno));
