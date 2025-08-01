@@ -41,6 +41,9 @@
 			<AppenderRef ref="console" />
 			<AppenderRef ref="async_log" />
 		</logger>
+		<logger name="com.application.task" level="info" additivity="false">
+			<AppenderRef ref="console" />
+		</logger>
 		<!-- <Logger name="jdbc.sqltiming" level="debug" additivity="false">
 			<AppenderRef ref="console" />
 		</Logger>

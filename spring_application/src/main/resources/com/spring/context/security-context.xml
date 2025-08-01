@@ -15,7 +15,7 @@
 		 	    class="com.application.security.LoginSuccessHandler"
 		 	    p:defaultTargetUrl="/index"
 		 	    c:logSavedPath-ref="logSavedPath"
-		 	    c:logFileName="login_user_log.csv"
+		 	    c:logFileName-ref="loginUserLogFileName"
 		 	    />
 	<beans:bean id="loginFailureHandler"
 	            class="com.application.security.LoginFailureHandler"

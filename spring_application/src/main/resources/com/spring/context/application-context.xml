@@ -25,7 +25,11 @@
 	      class="java.lang.String"
 	      c:value="${savePath.log.files}"
 	      />      
-	      
+	<bean id="loginUserLogFileName" 
+		  class="java.lang.String"
+		  c:original="${savePath.login.user.log.fileName}"
+		  />
+		        
 	<!-- Repository  -->
 	<bean id="memberDAO"
 	      class="com.application.dao.MemberDAOImpl"
@@ -55,7 +59,15 @@
 	      class="com.application.dao.AttachDAOImpl"
 	      c:session-ref="sqlSession"
 	      />
-	          
+	<bean id="loginUserLogDAO"
+	      class="com.application.dao.LoginUserLogDAOImpl"
+	      c:session-ref="sqlSession"
+		/>
+	 <bean id="removeFileSchedulerDAO"
+	      class="com.application.dao.RemoveFileSchedulerDAOImpl"
+	      c:session-ref="sqlSession"
+	      />
+	              
 	<!-- Service -->
 	<bean id="pdsService"
 	      class="com.application.service.PdsServiceImpl"
